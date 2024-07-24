@@ -38,6 +38,8 @@ University project for a bakery, where customers can select products to purchase
 
 <img src="image-5.png" alt="alt text" width="725"/>
 
+<img src="image-8.png" alt="alt text" width="725"/>
+
 <img src="image-6.png" alt="alt text" width="725"/>
 
 <img src="image-7.png" alt="alt text" width="725"/>
