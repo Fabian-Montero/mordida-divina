@@ -1,0 +1,98 @@
+﻿@model List<ProyectoWebGrupo6.Entidades.Producto>
+@{
+    ViewBag.Title = "Producto";
+}
+<div class="container-fluid">
+    <h1 class="mt-4" style="color: #5dc1b9;">Productos</h1>
+    <p>Productos artesanales hechos con amor y llenos de sabor con ingredientes de primera calidad.</p>
+    <hr style="background-color: gray; border: none;"/>
+
+    <div class="row justify-content-center align-items-stretch mt-5">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-4">
+                <div class="product-item bg-light h-100">
+                    <div class="product-img position-relative overflow-hidden">
+                        <img class="img-fluid product-image" src="@item.RutaImagen" alt="Producto">
+                        <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
+                            @if (Session["RolUsuario"] != null && Session["RolUsuario"].ToString() == "2")
+                            {
+                                <ul class="list-unstyled product-action">
+                                    <li>
+                                        <a onclick="AgregarCarrito(@item.ProductoId);" class="btn btn-outline-dark btn-square">
+                                            <i class="fa fa-cart-plus"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item m-1"><b>@item.NombreProducto</b></li>
+                        <li class="list-group-item m-1">@item.Descripcion</li>
+                        <li class="list-group-item">Precio: ₡@item.Precio +IVA</li>
+                    </ul>
+                    @if (Session["RolUsuario"] != null && Session["RolUsuario"].ToString() == "2")
+                    {
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-9">
+                                    <input type="number" id=prd-@item.ProductoId onkeypress="return ValidarNumeros(this.id)" class="form-control numberSelector" value="1" min="1" style="width: 80px">
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    function ValidarNumeros(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        //CharCode = ascii
+        if (charCode >= 48 && charCode <= 57) {
+            return true;
+        }
+        return false;
+    }
+
+    function AgregarCarrito(id) {
+        let cantProducto = $("#prd-" + id).val();
+
+    if (cantProducto <= 0) {
+        MostrarAlerta("info", "Debe ingresar una cantidad válida")
+        return
+    }
+
+    $.ajax({
+        url: '/Carrito/AgregarCarrito',
+        type: "POST",
+        data:
+        {
+            "idProducto": id,
+            "cantProducto": cantProducto
+        },
+        success: function (data) {
+            if (data == "OK") {
+                window.location.href = '@Url.Action("ConsultarProducto", "Producto")'
+            }
+            else {
+                alert(data);
+            }
+        }
+    });
+    }
+
+    function MostrarAlerta(icono, mensaje) {
+        Swal.fire({
+            position: "center",
+            icon: icono,
+            title: mensaje,
+            showConfirmButton: false,
+            timer: 2500
+        });
+    }
+</script>

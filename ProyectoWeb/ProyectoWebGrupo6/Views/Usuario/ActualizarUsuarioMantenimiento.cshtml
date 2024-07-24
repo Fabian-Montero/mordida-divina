@@ -1,0 +1,129 @@
+﻿@model ProyectoWebGrupo6.Entidades.Usuario
+@{
+    ViewBag.Title = "ActualizarUsuarioMantenimiento";
+    Layout = "~/Views/Shared/_LayoutExterno.cshtml";
+
+}
+
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Actualizar Usuario</h3></div>
+                            <div class="card-body">
+                                @if (ViewBag.msjPantalla != null)
+                                {
+                                    <div class="alert alert-warning" role="alert" style="text-align:center">
+                                        @ViewBag.MsjPantalla
+                                    </div>
+                                }
+                                @using (Html.BeginForm("ActualizarUsuarioMantenimiento", "Usuario"))
+                                {
+                                    @Html.HiddenFor(m => m.Provincia, new { @Id = "Provincia" })
+                                    @Html.HiddenFor(m => m.Canton, new { @Id = "Canton" })
+                                    @Html.HiddenFor(m => m.Distrito, new { @Id = "Distrito" })
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-3 mb-md-0">
+                                                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-user", @placeholder = "Ingrese su nombre", @type = "Text", @required = "true", @Id = "Nombre" })
+                                                <label for="Nombre">Nombre</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                @Html.TextBoxFor(m => m.Apellidos, new { @class = "form-control form-control-user", @placeholder = "Ingrese sus apellidos", @type = "Text", @required = "true", @Id = "Apellidos" })
+                                                <label for="Apellidos">Apellidos</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-user", @placeholder = "Ingrese su correo electrónico", @type = "Email", @required = "true", @Id = "Email" })
+                                        <label for="Email">Correo Electrónico</label>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-4">
+                                            <div class="form-floating mb-3 mb-md-0">
+                                                <select id="provincias" class="form-control" required>
+                                                </select>
+                                                <label for="provincias">Provincia</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-floating mb-3 mb-md-0">
+                                                <select id="cantones" class="form-control" required>
+                                                    <option value="">Seleccione una provincia</option>
+                                                </select>
+                                                <label for="cantones">Cantón</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-floating mb-3 mb-md-0">
+                                                <select id="distritos" class="form-control" required>
+                                                    <option value="">Seleccione una provincia y cantón</option>
+                                                </select>
+                                                <label for="distritos">Distrito</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        @Html.TextBoxFor(m => m.DireccionExacta, new { @class = "form-control form-control-user", @placeholder = "Ingrese su dirección exacta", @type = "Text", @required = "true", @Id = "DireccionExacta" })
+                                        <label for="DireccionExacta">Dirección Exacta</label>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+
+                                                @Html.DropDownListFor(m => m.Temporal, ViewBag.TiposTemporal as List<SelectListItem>, new { @class = "form-control form-control-user", @placeholder = "Contraseña Temporal", required = "true", @Id = "ContrasennaTemporal" })
+                                                <label for="ContrasennaTemporal">Contraseña Temporal</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class=" form-floating">
+
+                                                @Html.TextBoxFor(m => m.Vencimiento, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control form-control-user", @placeholder = "Fecha de vencimiento", @type = "DateTime-local", @Id = "Vencimiento" })
+                                                <label for="Vencimiento">Fecha de Vencimiento</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+
+                                                @Html.DropDownListFor(m => m.Activo, ViewBag.TiposEstado as List<SelectListItem>, new { @class = "form-control form-control-user", @placeholder = "Estado", required = "true", @Id = "Estado" })
+                                                <label for="Estado">Estado</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class=" form-floating">
+
+                                                @Html.DropDownListFor(m => m.rolId, ViewBag.TiposRoles as List<SelectListItem>, new { @class = "form-control form-control-user", @placeholder = "Roles", @required = "true", @Id = "Rol" })
+                                                <label for="Rol">Rol</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <div class="mt-4 mb-0">
+                                        <div class="d-grid">
+                                            <input type="submit" class="btn btn-block InputColor" value="Actualizar Usuario"></input>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="card-footer text-center py-3">
+                                <div class="small"><a href="@Url.Action("MantenimientoUsuarios", "Usuario")">Volver a usuarios</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+<script src="~/Estilos/jquery/jquery.min.js"></script>
+<script src="~/Estilos/js/direccionesEditar.js"></script>
+
+

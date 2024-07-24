@@ -1,0 +1,52 @@
+﻿@model ProyectoWebGrupo6.Entidades.Usuario
+@{
+    ViewBag.Title = "RegistrarNuevaContrasenna";
+    Layout = "~/Views/Shared/_LayoutExterno.cshtml";
+}
+
+<div id="layoutAuthentication">
+    <div id="layoutAuthentication_content">
+        <main>
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-5">
+                        <div class="card shadow-lg border-0 rounded-lg mt-5">
+                            <div class="card-header"><h3 class="text-center font-weight-light my-4">Actualización de Contraseña</h3></div>
+                            <div class="card-body">
+
+                                @if (ViewBag.MsjPantalla != null)
+                                {
+                                    <div class="alert alert-warning" role="alert" style="text-align:center">
+                                        @ViewBag.MsjPantalla
+                                    </div>
+                                }
+                                @using (Html.BeginForm("RegistrarNuevaContrasenna", "Usuario"))
+                                {
+                                    <div class="form-floating mb-3">
+                                        @Html.TextBoxFor(m => m.Contrasenna, new { @class = "form-control form-control-user", @placeholder = "Ingrese el codigo recivido por medio correo electronico", @type = "Text", @required = "true"})
+                                        <label for="Contrasenna">Código de Acceso</label>
+                                    </div>
+                                   <div class="form-floating mb-3">
+                                        @Html.TextBoxFor(m => m.NuevaContrasenna, new { @class = "form-control form-control-user", @placeholder = "Ingrese su nueva contraseña", @type = "Password", @required = "true", @Id = "Contrasenna" })
+                                       <label for="NuevaContrasenna">Nueva Contraseña</label>
+                                    </div>
+
+                                    <div class="form-floating mb-3">
+                                        @Html.TextBoxFor(m => m.ConfirmacionContrasenna, new { @class = "form-control form-control-user", @placeholder = "Ingrese nuevamente su nueva contraseña", @type = "Password", @required = "true", @Id = "Contrasenna" })
+                                        <label for="ConfirmacionContrasenna">Confirmación de Contraseña</label>
+                                    </div>
+
+                                    <div class="align-items-center justify-content-between mt-4 mb-0 text-center">
+                                        <input type="submit" class="btn btn-user btn-block InputColor" value="Guardar Nueva Contraseña">
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+

@@ -1,0 +1,720 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MordidaDivinaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="ActualizarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="bigint" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="ActualizarDireccionMantenimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="bigint" Mode="In" />
+          <Parameter Name="Provincia" Type="varchar" Mode="In" />
+          <Parameter Name="Canton" Type="varchar" Mode="In" />
+          <Parameter Name="Distrito" Type="varchar" Mode="In" />
+          <Parameter Name="DireccionExacta" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ActualizarEstadoPedido" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maestroId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="ActualizarImagenProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductoId" Type="bigint" Mode="In" />
+          <Parameter Name="RutaImagen" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ActualizarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductoId" Type="bigint" Mode="In" />
+          <Parameter Name="CategoriaId" Type="bigint" Mode="In" />
+          <Parameter Name="NombreProducto" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Precio" Type="decimal" Mode="In" />
+          <Parameter Name="Estado" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="ActualizarUsuarioMantenimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="bigint" Mode="In" />
+          <Parameter Name="rolId" Type="bigint" Mode="In" />
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Activo" Type="bit" Mode="In" />
+          <Parameter Name="Temporal" Type="bit" Mode="In" />
+          <Parameter Name="Vencimiento" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="AgregarCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuarioid" Type="bigint" Mode="In" />
+          <Parameter Name="productoid" Type="bigint" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ConsultarCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuarioid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="ConsultarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="ConsultarDetallePedidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maestroId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="ConsultarPedidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuarioId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="ConsultarPedidosMantenimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MostrarTodos" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="ConsultarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductoId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="ConsultarProductos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MostrarTodos" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="ConsultarTiposCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MostrarTodos" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="ConsultarTiposRoles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ConsultarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="ConsultarUsuarioMantenimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UsuarioId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="ConsultarUsuarios" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="EliminarCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="carritoid" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="EliminarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CategoriaId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="EliminarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductoId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="EliminarProductoPermanente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductoId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="EliminarUsuarioMantenimiento" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UsuarioId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="EncontrarPorCorreo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="EnvioCodigoAcceso" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="IniciarSesionUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Contrasenna" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ModificarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="bigint" Mode="In" />
+          <Parameter Name="contrasenna" Type="varchar" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="PagoCarrito" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usuarioId" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="RegistrarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NombreCategoria" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="RegistrarDireccion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UsuarioId" Type="bigint" Mode="In" />
+          <Parameter Name="Provincia" Type="varchar" Mode="In" />
+          <Parameter Name="Canton" Type="varchar" Mode="In" />
+          <Parameter Name="Distrito" Type="varchar" Mode="In" />
+          <Parameter Name="DireccionExacta" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="RegistrarNuevaContrasenna" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Contrasenna" Type="varchar" Mode="In" />
+          <Parameter Name="NuevaContrasenna" Type="varchar" Mode="In" />
+          <Parameter Name="ConfirmacionContrasenna" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="RegistrarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CategoriaId" Type="bigint" Mode="In" />
+          <Parameter Name="NombreProducto" Type="varchar" Mode="In" />
+          <Parameter Name="Descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="Precio" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="RegistrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="varchar" Mode="In" />
+          <Parameter Name="Apellidos" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Contrasenna" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="MordidaDivinaModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MordidaDivinaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MordidaDivinaEntities" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="ActualizarCategoria">
+            <Parameter Name="Id" Mode="In" Type="Int64" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ActualizarDireccionMantenimiento">
+            <Parameter Name="Id" Mode="In" Type="Int64" />
+            <Parameter Name="Provincia" Mode="In" Type="String" />
+            <Parameter Name="Canton" Mode="In" Type="String" />
+            <Parameter Name="Distrito" Mode="In" Type="String" />
+            <Parameter Name="DireccionExacta" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ActualizarEstadoPedido">
+            <Parameter Name="maestroId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="ActualizarImagenProducto">
+            <Parameter Name="ProductoId" Mode="In" Type="Int64" />
+            <Parameter Name="RutaImagen" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ActualizarProducto">
+            <Parameter Name="ProductoId" Mode="In" Type="Int64" />
+            <Parameter Name="CategoriaId" Mode="In" Type="Int64" />
+            <Parameter Name="NombreProducto" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+            <Parameter Name="Estado" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ActualizarUsuarioMantenimiento">
+            <Parameter Name="Id" Mode="In" Type="Int64" />
+            <Parameter Name="rolId" Mode="In" Type="Int64" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Activo" Mode="In" Type="Boolean" />
+            <Parameter Name="Temporal" Mode="In" Type="Boolean" />
+            <Parameter Name="Vencimiento" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="AgregarCarrito">
+            <Parameter Name="usuarioid" Mode="In" Type="Int64" />
+            <Parameter Name="productoid" Mode="In" Type="Int64" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarCarrito" ReturnType="Collection(MordidaDivinaModel.ConsultarCarrito_Result)">
+            <Parameter Name="usuarioid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarCategoria" ReturnType="Collection(MordidaDivinaModel.ConsultarCategoria_Result)">
+            <Parameter Name="id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarDetallePedidos" ReturnType="Collection(MordidaDivinaModel.ConsultarDetallePedidos_Result)">
+            <Parameter Name="maestroId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarPedidos" ReturnType="Collection(MordidaDivinaModel.ConsultarPedidos_Result)">
+            <Parameter Name="usuarioId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarPedidosMantenimiento" ReturnType="Collection(MordidaDivinaModel.ConsultarPedidosMantenimiento_Result)">
+            <Parameter Name="MostrarTodos" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarProducto" ReturnType="Collection(MordidaDivinaModel.ConsultarProducto_Result)">
+            <Parameter Name="ProductoId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarProductos" ReturnType="Collection(MordidaDivinaModel.ConsultarProductos_Result)">
+            <Parameter Name="MostrarTodos" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarTiposCategoria" ReturnType="Collection(MordidaDivinaModel.ConsultarTiposCategoria_Result)">
+            <Parameter Name="MostrarTodos" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarTiposRoles" ReturnType="Collection(MordidaDivinaModel.ConsultarTiposRoles_Result)" />
+          <FunctionImport Name="ConsultarUsuario" ReturnType="Collection(MordidaDivinaModel.ConsultarUsuario_Result)">
+            <Parameter Name="id" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarUsuarioMantenimiento" ReturnType="Collection(MordidaDivinaModel.ConsultarUsuarioMantenimiento_Result)">
+            <Parameter Name="UsuarioId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="ConsultarUsuarios" ReturnType="Collection(MordidaDivinaModel.ConsultarUsuarios_Result)" />
+          <FunctionImport Name="EliminarCarrito">
+            <Parameter Name="carritoid" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="EliminarCategoria">
+            <Parameter Name="CategoriaId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="EliminarProducto">
+            <Parameter Name="ProductoId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="EliminarProductoPermanente">
+            <Parameter Name="ProductoId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="EliminarUsuarioMantenimiento">
+            <Parameter Name="UsuarioId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="EncontrarPorCorreo" ReturnType="Collection(MordidaDivinaModel.EncontrarPorCorreo_Result)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="EnvioCodigoAcceso" ReturnType="Collection(MordidaDivinaModel.EnvioCodigoAcceso_Result)">
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="IniciarSesionUsuario" ReturnType="Collection(MordidaDivinaModel.IniciarSesionUsuario_Result)">
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Contrasenna" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ModificarUsuario" ReturnType="Collection(MordidaDivinaModel.ModificarUsuario_Result)">
+            <Parameter Name="id" Mode="In" Type="Int64" />
+            <Parameter Name="contrasenna" Mode="In" Type="String" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellidos" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PagoCarrito">
+            <Parameter Name="usuarioId" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="RegistrarCategoria" ReturnType="Collection(Int64)">
+            <Parameter Name="NombreCategoria" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RegistrarDireccion">
+            <Parameter Name="UsuarioId" Mode="In" Type="Int64" />
+            <Parameter Name="Provincia" Mode="In" Type="String" />
+            <Parameter Name="Canton" Mode="In" Type="String" />
+            <Parameter Name="Distrito" Mode="In" Type="String" />
+            <Parameter Name="DireccionExacta" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RegistrarNuevaContrasenna" ReturnType="Collection(MordidaDivinaModel.RegistrarNuevaContrasenna_Result)">
+            <Parameter Name="Contrasenna" Mode="In" Type="String" />
+            <Parameter Name="NuevaContrasenna" Mode="In" Type="String" />
+            <Parameter Name="ConfirmacionContrasenna" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="RegistrarProducto" ReturnType="Collection(Int64)">
+            <Parameter Name="CategoriaId" Mode="In" Type="Int64" />
+            <Parameter Name="NombreProducto" Mode="In" Type="String" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Precio" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="RegistrarUsuario">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellidos" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Contrasenna" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="ConsultarCarrito_Result">
+          <Property Type="Int64" Name="carritoid" Nullable="false" />
+          <Property Type="Int64" Name="usuarioid" Nullable="false" />
+          <Property Type="Int64" Name="productoid" Nullable="false" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="cantidad" Nullable="false" />
+          <Property Type="Decimal" Name="precio" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="Decimal" Name="SubTotal" Nullable="true" Precision="21" Scale="2" />
+          <Property Type="Decimal" Name="Impuesto" Nullable="true" Precision="24" Scale="4" />
+          <Property Type="Decimal" Name="Total" Nullable="true" Precision="25" Scale="4" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="ConsultarCategoria_Result">
+          <Property Type="Int64" Name="CategoriaId" Nullable="false" />
+          <Property Type="String" Name="NombreCategoria" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="estado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ConsultarDetallePedidos_Result">
+          <Property Type="Int64" Name="detalleId" Nullable="false" />
+          <Property Type="Int64" Name="maestroId" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="Cantidad" Nullable="false" />
+          <Property Type="Decimal" Name="Precio" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="SubTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Impuesto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="ConsultarPedidos_Result">
+          <Property Type="Int64" Name="maestroid" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="255" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="SubTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Impuesto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ConsultarPedidosMantenimiento_Result">
+          <Property Type="Int64" Name="maestroid" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="255" />
+          <Property Type="DateTime" Name="Fecha" Nullable="false" Precision="23" />
+          <Property Type="Decimal" Name="SubTotal" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Impuesto" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="Total" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Boolean" Name="estado" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="ConsultarProducto_Result">
+          <Property Type="Int64" Name="ProductoId" Nullable="false" />
+          <Property Type="Int64" Name="categoriaId" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="precio" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="String" Name="NombreCategoria" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="rutaImagen" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="estado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ConsultarProductos_Result">
+          <Property Type="Int64" Name="ProductoId" Nullable="false" />
+          <Property Type="Int64" Name="categoriaId" Nullable="false" />
+          <Property Type="String" Name="NombreProducto" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="255" />
+          <Property Type="Decimal" Name="precio" Nullable="false" Precision="10" Scale="2" />
+          <Property Type="String" Name="NombreCategoria" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="rutaImagen" Nullable="true" MaxLength="255" />
+          <Property Type="Boolean" Name="estado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ConsultarTiposCategoria_Result">
+          <Property Type="Int64" Name="categoriaId" Nullable="false" />
+          <Property Type="String" Name="NombreCategoria" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="estado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ConsultarTiposRoles_Result">
+          <Property Type="Int64" Name="RolId" Nullable="false" />
+          <Property Type="String" Name="NombreRol" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="ConsultarUsuario_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="apellidos" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="activo" Nullable="false" />
+          <Property Type="Boolean" Name="temporal" Nullable="false" />
+          <Property Type="DateTime" Name="vencimiento" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="ConsultarUsuarioMantenimiento_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="rolId" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="apellidos" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="activo" Nullable="false" />
+          <Property Type="Boolean" Name="temporal" Nullable="false" />
+          <Property Type="DateTime" Name="vencimiento" Nullable="false" Precision="23" />
+          <Property Type="String" Name="NombreRol" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="provincia" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="canton" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="distrito" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="direccionExacta" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="ConsultarUsuarios_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="rolId" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="apellidos" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="activo" Nullable="false" />
+          <Property Type="Boolean" Name="temporal" Nullable="false" />
+          <Property Type="DateTime" Name="vencimiento" Nullable="false" Precision="23" />
+          <Property Type="String" Name="NombreRol" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="EncontrarPorCorreo_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="rolId" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="apellidos" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="contrasenna" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="activo" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="EnvioCodigoAcceso_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="rolId" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="apellidos" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="contrasenna" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="activo" Nullable="false" />
+          <Property Type="Boolean" Name="temporal" Nullable="false" />
+          <Property Type="DateTime" Name="vencimiento" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="IniciarSesionUsuario_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="rolId" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="apellidos" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="contrasenna" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="activo" Nullable="false" />
+          <Property Type="Boolean" Name="temporal" Nullable="false" />
+          <Property Type="DateTime" Name="vencimiento" Nullable="false" Precision="23" />
+          <Property Type="String" Name="NombreRol" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="ModificarUsuario_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="rolId" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="apellidos" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="NombreRol" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="RegistrarNuevaContrasenna_Result">
+          <Property Type="Int64" Name="id" Nullable="false" />
+          <Property Type="Int64" Name="rolId" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="apellidos" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="email" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="contrasenna" Nullable="false" MaxLength="255" />
+          <Property Type="Boolean" Name="activo" Nullable="false" />
+          <Property Type="Boolean" Name="temporal" Nullable="false" />
+          <Property Type="DateTime" Name="vencimiento" Nullable="false" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MordidaDivinaModelStoreContainer" CdmEntityContainer="MordidaDivinaEntities" >
+          <FunctionImportMapping FunctionImportName="ActualizarCategoria" FunctionName="MordidaDivinaModel.Store.ActualizarCategoria" />
+          <FunctionImportMapping FunctionImportName="ActualizarDireccionMantenimiento" FunctionName="MordidaDivinaModel.Store.ActualizarDireccionMantenimiento" />
+          <FunctionImportMapping FunctionImportName="ActualizarEstadoPedido" FunctionName="MordidaDivinaModel.Store.ActualizarEstadoPedido" />
+          <FunctionImportMapping FunctionImportName="ActualizarImagenProducto" FunctionName="MordidaDivinaModel.Store.ActualizarImagenProducto" />
+          <FunctionImportMapping FunctionImportName="ActualizarProducto" FunctionName="MordidaDivinaModel.Store.ActualizarProducto" />
+          <FunctionImportMapping FunctionImportName="ActualizarUsuarioMantenimiento" FunctionName="MordidaDivinaModel.Store.ActualizarUsuarioMantenimiento" />
+          <FunctionImportMapping FunctionImportName="AgregarCarrito" FunctionName="MordidaDivinaModel.Store.AgregarCarrito" />
+          <FunctionImportMapping FunctionImportName="ConsultarCarrito" FunctionName="MordidaDivinaModel.Store.ConsultarCarrito">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.ConsultarCarrito_Result">
+                <ScalarProperty Name="carritoid" ColumnName="carritoid" />
+                <ScalarProperty Name="usuarioid" ColumnName="usuarioid" />
+                <ScalarProperty Name="productoid" ColumnName="productoid" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarCategoria" FunctionName="MordidaDivinaModel.Store.ConsultarCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.ConsultarCategoria_Result">
+                <ScalarProperty Name="CategoriaId" ColumnName="CategoriaId" />
+                <ScalarProperty Name="NombreCategoria" ColumnName="NombreCategoria" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarDetallePedidos" FunctionName="MordidaDivinaModel.Store.ConsultarDetallePedidos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.ConsultarDetallePedidos_Result">
+                <ScalarProperty Name="detalleId" ColumnName="detalleId" />
+                <ScalarProperty Name="maestroId" ColumnName="maestroId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarPedidos" FunctionName="MordidaDivinaModel.Store.ConsultarPedidos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.ConsultarPedidos_Result">
+                <ScalarProperty Name="maestroid" ColumnName="maestroid" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarPedidosMantenimiento" FunctionName="MordidaDivinaModel.Store.ConsultarPedidosMantenimiento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.ConsultarPedidosMantenimiento_Result">
+                <ScalarProperty Name="maestroid" ColumnName="maestroid" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="Impuesto" ColumnName="Impuesto" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarProducto" FunctionName="MordidaDivinaModel.Store.ConsultarProducto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.ConsultarProducto_Result">
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="categoriaId" ColumnName="categoriaId" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="NombreCategoria" ColumnName="NombreCategoria" />
+                <ScalarProperty Name="rutaImagen" ColumnName="rutaImagen" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarProductos" FunctionName="MordidaDivinaModel.Store.ConsultarProductos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.ConsultarProductos_Result">
+                <ScalarProperty Name="ProductoId" ColumnName="ProductoId" />
+                <ScalarProperty Name="categoriaId" ColumnName="categoriaId" />
+                <ScalarProperty Name="NombreProducto" ColumnName="NombreProducto" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="NombreCategoria" ColumnName="NombreCategoria" />
+                <ScalarProperty Name="rutaImagen" ColumnName="rutaImagen" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarTiposCategoria" FunctionName="MordidaDivinaModel.Store.ConsultarTiposCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.ConsultarTiposCategoria_Result">
+                <ScalarProperty Name="categoriaId" ColumnName="categoriaId" />
+                <ScalarProperty Name="NombreCategoria" ColumnName="NombreCategoria" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarTiposRoles" FunctionName="MordidaDivinaModel.Store.ConsultarTiposRoles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.ConsultarTiposRoles_Result">
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarUsuario" FunctionName="MordidaDivinaModel.Store.ConsultarUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.ConsultarUsuario_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="temporal" ColumnName="temporal" />
+                <ScalarProperty Name="vencimiento" ColumnName="vencimiento" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarUsuarioMantenimiento" FunctionName="MordidaDivinaModel.Store.ConsultarUsuarioMantenimiento">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.ConsultarUsuarioMantenimiento_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rolId" ColumnName="rolId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="temporal" ColumnName="temporal" />
+                <ScalarProperty Name="vencimiento" ColumnName="vencimiento" />
+                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+                <ScalarProperty Name="provincia" ColumnName="provincia" />
+                <ScalarProperty Name="canton" ColumnName="canton" />
+                <ScalarProperty Name="distrito" ColumnName="distrito" />
+                <ScalarProperty Name="direccionExacta" ColumnName="direccionExacta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ConsultarUsuarios" FunctionName="MordidaDivinaModel.Store.ConsultarUsuarios">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.ConsultarUsuarios_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rolId" ColumnName="rolId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="temporal" ColumnName="temporal" />
+                <ScalarProperty Name="vencimiento" ColumnName="vencimiento" />
+                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="EliminarCarrito" FunctionName="MordidaDivinaModel.Store.EliminarCarrito" />
+          <FunctionImportMapping FunctionImportName="EliminarCategoria" FunctionName="MordidaDivinaModel.Store.EliminarCategoria" />
+          <FunctionImportMapping FunctionImportName="EliminarProducto" FunctionName="MordidaDivinaModel.Store.EliminarProducto" />
+          <FunctionImportMapping FunctionImportName="EliminarProductoPermanente" FunctionName="MordidaDivinaModel.Store.EliminarProductoPermanente" />
+          <FunctionImportMapping FunctionImportName="EliminarUsuarioMantenimiento" FunctionName="MordidaDivinaModel.Store.EliminarUsuarioMantenimiento" />
+          <FunctionImportMapping FunctionImportName="EncontrarPorCorreo" FunctionName="MordidaDivinaModel.Store.EncontrarPorCorreo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.EncontrarPorCorreo_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rolId" ColumnName="rolId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="EnvioCodigoAcceso" FunctionName="MordidaDivinaModel.Store.EnvioCodigoAcceso">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.EnvioCodigoAcceso_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rolId" ColumnName="rolId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="temporal" ColumnName="temporal" />
+                <ScalarProperty Name="vencimiento" ColumnName="vencimiento" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="IniciarSesionUsuario" FunctionName="MordidaDivinaModel.Store.IniciarSesionUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.IniciarSesionUsuario_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rolId" ColumnName="rolId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="temporal" ColumnName="temporal" />
+                <ScalarProperty Name="vencimiento" ColumnName="vencimiento" />
+                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ModificarUsuario" FunctionName="MordidaDivinaModel.Store.ModificarUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.ModificarUsuario_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rolId" ColumnName="rolId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="NombreRol" ColumnName="NombreRol" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PagoCarrito" FunctionName="MordidaDivinaModel.Store.PagoCarrito" />
+          <FunctionImportMapping FunctionImportName="RegistrarCategoria" FunctionName="MordidaDivinaModel.Store.RegistrarCategoria" />
+          <FunctionImportMapping FunctionImportName="RegistrarDireccion" FunctionName="MordidaDivinaModel.Store.RegistrarDireccion" />
+          <FunctionImportMapping FunctionImportName="RegistrarNuevaContrasenna" FunctionName="MordidaDivinaModel.Store.RegistrarNuevaContrasenna">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MordidaDivinaModel.RegistrarNuevaContrasenna_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="rolId" ColumnName="rolId" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="contrasenna" ColumnName="contrasenna" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="temporal" ColumnName="temporal" />
+                <ScalarProperty Name="vencimiento" ColumnName="vencimiento" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="RegistrarProducto" FunctionName="MordidaDivinaModel.Store.RegistrarProducto" />
+          <FunctionImportMapping FunctionImportName="RegistrarUsuario" FunctionName="MordidaDivinaModel.Store.RegistrarUsuario" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,74 @@
+﻿@model ProyectoWebGrupo6.Entidades.Producto
+@{
+    ViewBag.Title = "RegistrarProducto";
+}
+
+
+
+
+<main>
+    <div class="container">
+
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Registrar Producto</h3></div>
+                    <div class="card-body">
+                        @if (ViewBag.msjPantalla!=null)
+                        {
+                            <div class="alert alert-warning" role="alert" style="text-align:center">
+                                @ViewBag.MsjPantalla
+                            </div>
+                        }
+                        @using (Html.BeginForm("RegistrarProducto", "Producto", FormMethod.Post, new {enctype = "multipart/form-data"}))
+                        {
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        @Html.TextBoxFor(m => m.NombreProducto, new { @class = "form-control form-control-user", @placeholder = "Ingrese el nombre del producto", @type = "Text", @required = "true", @Id = "NombreProducto" })
+                                        <label for="NombreProducto">Nombre del producto</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        @Html.DropDownListFor(m => m.CategoriaId, ViewBag.TiposCategoria as List<SelectListItem>, new { @class = "form-control form-control-user", @required = "true" })
+                                        <label for="Apellidos">Categoría</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-floating mb-3">
+                                @Html.TextBoxFor(m => m.Descripcion, new { @class = "form-control form-control-user", @placeholder = "Ingrese la descripción del producto", @type = "Text", @required = "true", @Id = "Descripcion" })
+                                <label for="Descripcion">Descripción</label>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        @Html.TextBoxFor(m => m.Precio, new { @class = "form-control form-control-user", @placeholder = "Ingrese el precio del producto ", @type = "Number", @required = "true", @Id = "Precio" })
+                                        <label for="Precio">Precio</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-floating mb-3 mb-md-0">
+                                        
+                                        <input type="file" id="ImagenProducto" name="ImagenProducto" class="form-control form-control-user" required/>
+                                        <label for="Imagen">Imagen</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 mb-0">
+                                <div class="d-grid">
+                                    <input type="submit" class="btn btn-block InputColor" value="Crear Producto"></input>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="card-footer text-center py-3">
+                        <div class="small"><a href="@Url.Action("MantenimientoProductos", "Producto")">Volver a productos</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+

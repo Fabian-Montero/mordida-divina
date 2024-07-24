@@ -1,0 +1,122 @@
+﻿@model List<ProyectoWebGrupo6.Entidades.Usuario>
+@{
+    ViewBag.Title = "MantenimientoUsuarios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold" style="color: #5dc1b9;">Mantenimiento Usuarios</h6>
+    </div>
+    <div class="card-body">
+        <p class="">Recuerde que no puede actualizar la información de su usuario, otro administrador deberá hacerlo por usted.</p>
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        @if (ViewBag.MsjPantalla != null)
+                        {
+                            <div class="alert alert-warning" role="alert" style="text-align:center">
+                                @ViewBag.MsjPantalla
+                            </div>
+                        }
+
+                        <table id="myDataTable" class="table table-bordered dataTable" style="width: 100%;">
+                            <thead>
+                                <tr role="row">
+                                    <th>Id del Usuario</th>
+                                    <th>Nombre</th>
+                                    <th>Apellidos</th>
+                                    <th>Email</th>
+                                    <th>Estado</th>
+                                    <th>Contraseña Temporal</th>
+                                    <th>Vencimiento</th>
+                                    <th>Rol</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="odd">
+                                        <td>@item.Id</td>
+                                        <td>@item.Nombre </td>
+                                        <td>@item.Apellidos </td>
+                                        <td>@item.Email </td>
+                                        @{
+                                            string color;
+                                            string estado;
+                                            if (item.Activo == true)
+                                            {
+
+                                                color = "#C8EFC1"; // Color Verde
+                                                estado = "Activo";
+                                            }
+                                            else
+                                            {
+                                                color = "#D8D6D5"; // Color Gris
+                                                estado = "Inactivo";
+                                            }
+
+                                        }
+                                        <td><span style="padding: 5px 10px; background-color: @color; border-radius: 5px;">@estado</span></td>
+                                        @if (item.Temporal)
+                                        {
+                                            <td>Tiene una contraseña temporal</td>
+                                            <td>@item.Vencimiento</td>
+                                        }
+                                        else
+                                        {
+                                            <td>No tiene una contraseña temporal</td>
+                                            <td></td>
+                                        }
+                                        <td>@item.NombreRol </td>
+
+                                        @if (item.Id == Convert.ToInt64(HttpContext.Current.Session["UsuarioId"]))
+                                        {
+                                            <td class="align-middle text-center">
+                                                <a style="background-color: #c7c7c7;" href="@Url.Action("ActualizarUsuarioMantenimiento", "Usuario", new { id = @item.Id })" onclick="return false;" class="btn InputColor mb-2">Editar</a>
+                                                <a style="background-color: #c7c7c7;" href="@Url.Action("EliminarUsuarioMantenimiento", "Usuario", new { id = @item.Id })" onclick="return false;" class="btn InputColor mb-2">Inactivar</a>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                    <td class="align-middle text-center">
+
+                                        <a href="@Url.Action("ActualizarUsuarioMantenimiento", "Usuario", new { id = @item.Id })" class="btn InputColor mb-2">Editar</a>
+                                        @if (item.Activo == true)
+                                        {
+                                            <a href="@Url.Action("EliminarUsuarioMantenimiento", "Usuario", new { id = @item.Id })" class="btn InputColor mb-2">Inactivar</a>
+                                        }
+                                        else 
+                                        { 
+                                            <a style="background-color: #c7c7c7;" href="@Url.Action("EliminarUsuarioMantenimiento", "Usuario", new { id = @item.Id })" onclick="return false;" class="btn InputColor mb-2">Inactivar</a>
+                                        }
+
+                                    </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="~/Estilos/jquery/jquery.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                $('#myDataTable').DataTable({
+                    language: {
+                        url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json',
+                    },
+                    order: [[4, 'asc']]
+                });
+            });
+        </script>
+
+
+

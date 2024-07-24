@@ -1,0 +1,62 @@
+﻿@model ProyectoWebGrupo6.Entidades.Usuario
+
+@{
+    ViewBag.Title = "ModificarUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold" style="color: #5dc1b9;">Perfil</h6>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="card-body">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                    @if (ViewBag.MsjPantallaExito != null)
+                    {
+                        <div class="alert alert-success" role="alert" style="text-align:center">
+                            @ViewBag.MsjPantallaExito
+                        </div>
+                    }
+
+                    @if (ViewBag.MsjPantallaFallida != null)
+                    {
+                        <div class="alert alert-danger" role="alert" style="text-align:center">
+                            @ViewBag.MsjPantallaFallida
+                        </div>
+                    }
+
+                    @using (Html.BeginForm("ModificarUsuario", "Usuario", FormMethod.Post))
+                    {
+                        <div class="form-group">
+                            @Html.Label("Nombre")
+                            @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-user", @placeholder = "Nombre", @required = "true" })
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Apellidos")
+                            @Html.TextBoxFor(m => m.Apellidos, new { @class = "form-control form-control-user", @placeholder = "Apellidos", @required = "true" })
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Correo Electrónico")
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-user", @placeholder = "Correo Electronico", @type = "Email", @required = "true" })
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Contraseña")
+                            @Html.TextBoxFor(m => m.Contrasenna, new { @class = "form-control form-control-user", @placeholder = "Contraseña", @type = "Password" })
+                        </div>
+
+                        <input type="submit" class="btn btn-user btn-block InputColor" value="Confirmar Cambios">
+                    }
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

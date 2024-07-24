@@ -1,0 +1,88 @@
+﻿@model List<ProyectoWebGrupo6.Entidades.Carrito>
+
+@{
+    ViewBag.Title = "PedidosMantenimiento";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold" style="color: #5dc1b9;">Mantenimiento Pedidos</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+
+                        @if (ViewBag.MsjPantalla != null)
+                        {
+                            <div class="alert alert-warning" role="alert" style="text-align:center">
+                                @ViewBag.MsjPantalla
+                            </div>
+                        }
+
+                        <table id="myDataTable" class="table table-bordered dataTable" style="width: 100%;">
+                            <thead>
+                                <tr role="row">
+                                    <th># Factura</th>
+                                    <th>Fecha</th>
+                                    <th>Nombre</th>
+                                    <th>SubTotal</th>
+                                    <th>Impuestos</th>
+                                    <th>Total</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="odd">
+                                        <td>@item.MaestroId</td>
+                                        <td>@item.Fecha.ToString("dd/MM/yyyy hh:mm tt")</td>
+                                        <td>@item.Nombre</td>
+                                        <td>@item.SubTotal.ToString("N2")</td>
+                                        <td>@item.Impuesto.ToString("N2")</td>
+                                        <td>@item.Total.ToString("N2")</td>
+                                        @{
+                                            string estado = item.Estado ? "Pendiente" : "Entregado";
+                                            string color;
+                                            if (item.Estado)
+                                            {
+                                                color = "#F8DF7B"; // Color Amarillo
+                                            }
+                                            else
+                                            {
+                                                color = "#C8EFC1"; // Color Verde
+                                            }
+                                        }
+                                        <td><span style="padding: 5px 10px; background-color: @color; border-radius: 5px;">@estado</span></td>
+                                        <td style="text-align:center" title="Revisar">
+                                            <a href="@Url.Action("ConsultarDetalleFacturas","Carrito", new { id = @item.MaestroId })"><i class="fas fa-search iconCustom mr-2"></i></a>
+                                            <a href="@Url.Action("ActualizarEstadoPedido","Carrito", new { id = @item.MaestroId })"><i class="fas fa-clipboard-check iconCustom"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Estilos/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#myDataTable').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json'
+            },
+            order: [[6, 'desc']]
+        });
+    });
+
+</script>
+

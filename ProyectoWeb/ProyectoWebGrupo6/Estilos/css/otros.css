@@ -1,0 +1,90 @@
+.InputColor {
+    background-color: #de7cce;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.InputColorDisable {
+    background-color: chartreuse;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.InputColor:hover {
+    background-color:#5dc1b9;
+    color: #ffffff;
+}
+
+
+.navbarColor {
+    background: rgb(222,124,206);
+    background: linear-gradient(90deg, rgba(222,124,206,1) 43%, rgba(113,219,205,1) 61%);
+}
+.sideNavbarColor {
+    background-color: de7cce;
+}
+
+.textWhite{
+    color:#ffffff
+}
+
+.navlinkColor {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+    .navlinkColor:hover, .navlinkColor:focus {
+        color: #41162d;
+        text-decoration: none;
+    }
+
+.navlinkColor.disabled {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: default;
+}
+
+.numberSelector {
+    text-align: center;
+    width: 50px;
+    border-color: #5dc1b9;
+    border-width:2px;
+}
+
+.product-img {
+    width: 100%; 
+    height: 270px; 
+    overflow: hidden; 
+}
+
+.product-img img {
+    object-fit: cover; 
+    width: 100%; 
+    height: 100%; 
+}
+
+.iconCustom {
+    color: #de7cce !important;
+}
+
+.iconCustom:hover {
+    color: #5dc1b9 !important;
+}
+
+.toPress:hover{
+    background-color:#e0e0e0 !important;
+}
+
+.toPress:active {
+    background-color: #de7cce !important;
+}

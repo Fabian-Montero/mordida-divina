@@ -1,0 +1,120 @@
+﻿@model List<ProyectoWebGrupo6.Entidades.Carrito>
+@{
+    ViewBag.Title = "ConsultaCarrito";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold" style="color: #5dc1b9;">Carrito de Compras</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+
+                        @if (ViewBag.MsjPantalla != null)
+                        {
+                            <div class="alert alert-warning" role="alert" style="text-align:center">
+                                @ViewBag.MsjPantalla
+                            </div>
+                        }
+
+                        <table id="myDataTable" class="table table-bordered dataTable" style="width: 100%;">
+                            <thead>
+                                <tr role="row">
+                                    <th>Fecha</th>
+                                    <th>Código</th>
+                                    <th>Nombre</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Impuesto</th>
+                                    <th>SubTotal</th>
+                                    <th>Total</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="odd">
+                                        <td>@item.Fecha.ToString("dd/MM/yyyy hh:mm tt")</td>
+                                        <td>@item.Productoid</td>
+                                        <td>@item.Nombre</td>
+                                        <td>@item.Cantidad</td>
+                                        <td>₡@item.Precio.ToString("N2")</td>
+                                        <td>₡@item.Impuesto.ToString("N2")</td>
+                                        <td>₡@item.SubTotal.ToString("N2")</td>
+                                        <td>₡@item.Total.ToString("N2")</td>
+
+                                        <td style="text-align:center">
+                                            @*<a href="@Url.Action("EliminarCarrito","Carrito", new { id = @item.Carritoid })"><i class="fas fa-trash fa-2x m-1"></i></a>*@
+
+                                            <button type="button" class="btn InputColor AbrirModal" data-bs-toggle="modal" data-bs-target="#exampleModal" data-id="@item.Carritoid">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+                        <br />
+
+                        <div>
+                            <p style="font-size:14pt">El monto a cancelar es de: <b> ₡@decimal.Parse(Session["Total"].ToString()).ToString("N2")</b></p>
+                            <div>
+
+                                @if (Session["Total"].ToString() != "0")
+                                {
+                                    using (Html.BeginForm("PagoCarrito", "Carrito", FormMethod.Post))
+                                    {
+                                        <button type="submit" class="btn InputColor">Realizar Pedido</button>
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Estilos/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#myDataTable').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json',
+            }
+        });
+    });
+    $(".AbrirModal").click(function () {
+        $("#Carritoid").val($(this).attr("data-id"));
+    });
+</script>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Desea eliminar la linea seleccionada?
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm("EliminarCarrito", "Carrito", FormMethod.Post))
+                {
+                    <input type="hidden" id="Carritoid" name="Carritoid" value="" />
+                    <button type="submit" class="btn InputColor">Confirmar</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

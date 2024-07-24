@@ -1,0 +1,98 @@
+﻿@model List<ProyectoWebGrupo6.Entidades.TiposCategorias>
+@{
+    ViewBag.Title = "MantenimientoCategorias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold" style="color: #5dc1b9;">Mantenimiento Categorías</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        @if (ViewBag.MsjPantalla != null)
+                        {
+                            <div class="alert alert-warning" role="alert" style="text-align:center">
+                                @ViewBag.MsjPantalla
+                            </div>
+                        }
+
+                        <div style="margin-bottom:1%; text-align:left">
+                            <a class="btn InputColor" href="@Url.Action("RegistrarCategoria","Categoria")"> + Agregar</a>
+                        </div>
+
+                        <table id="myDataTable" class="table table-bordered dataTable" style="width: 100%;">
+                            <thead>
+                                <tr role="row">
+
+                                    <th>Id de la Categoría</th>
+                                    <th>Nombre</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="odd">
+
+                                        <td>@item.CategoriaId</td>
+                                        <td>@item.NombreCategoria</td>
+                                        @{
+                                            string color;
+                                            string estado;
+                                            if (item.Estado == true)
+                                            {
+
+                                                color = "#C8EFC1"; // Color Verde
+                                                estado = "Activo";
+                                            }
+                                            else
+                                            {
+                                                color = "#D8D6D5"; // Color Gris
+                                                estado = "Inactivo";
+                                            }
+
+                                        }
+                                        <td><span style="padding: 5px 10px; background-color: @color; border-radius: 5px;">@estado</span></td>
+                                        <td style="text-align:center">
+                                            <a href="@Url.Action("ActualizarCategoria", "Categoria", new { CategoriaId = @item.CategoriaId })" class="btn InputColor mb-2">Editar</a>
+
+                                            @if (item.Estado == true)
+                                            {
+                                                <a href="@Url.Action("EliminarCategoria", "Categoria", new { CategoriaId = @item.CategoriaId })" class="btn InputColor mb-2">Inactivar</a>
+
+                                            }
+                                            else
+                                            {
+                                                <a style="background-color: #c7c7c7;" href="@Url.Action("EliminarCategoria", "Categoria", new { CategoriaId = @item.CategoriaId })" onclick="return false;" class="btn InputColor mb-2">Inactivar</a>
+                                              
+                                            }
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            </main>
+<script src="~/Estilos/jquery/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#myDataTable').DataTable({
+            language: {
+                url: '//cdn.datatables.net/plug-ins/2.0.2/i18n/es-ES.json',
+            },
+            order: [[2, 'asc']]
+        });
+    });
+</script>
